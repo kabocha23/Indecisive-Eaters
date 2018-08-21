@@ -1,0 +1,16 @@
+
+.header-box{
+  min-height: 30px;
+  height: 10%;
+  min-width: 900px;
+  background-color: #363636;
+  color: white;
+  padding:  5px 0px 0px 20px;
+}
+.header-box h1 {
+  display: inline-block;
+  margin-right: 40px;
+}
+.header-box h4 {
+  display: inline-block;
+}

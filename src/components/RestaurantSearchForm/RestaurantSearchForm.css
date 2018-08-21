@@ -1,0 +1,61 @@
+.search-container {
+  display:flex;
+  margin: auto;
+}
+
+form.search-form {
+  display: flex;
+  flex: 0 1 auto;
+  padding: 10px;
+  font-size: 17px;
+  margin: auto;
+}
+
+form.search-form button {
+  width: 50px;
+  height: 40px;
+  padding: 10px;
+  background: #c41200;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.restaurantType {
+  height: 40px;
+  min-width: 350px;
+  box-sizing: border-box;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-left: 10px;
+}
+
+.restaurantLocation {
+  height: 40px;
+  min-width: 350px;
+  box-sizing: border-box;
+  border: none;
+  border-left: 1px solid rgb(185, 185, 185);
+  padding-left: 10px;
+}
+
+form.search-form button:hover {
+  background: #ac1100;
+}
+
+form.search-form::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.search-btn img {
+  margin: auto;
+  height: 15px;
+}

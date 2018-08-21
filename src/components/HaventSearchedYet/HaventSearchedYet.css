@@ -1,0 +1,11 @@
+.havent-searched-container {
+  width: 100%;
+  margin: auto;
+}
+
+.havent-searched-container p{
+  margin-top: 50%;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+}
