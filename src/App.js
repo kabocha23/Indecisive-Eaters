@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
+
 import RestaurantSearchForm from './components/RestaurantSearchForm/RestaurantSearchForm';
 import Header from './components/Header/Header';
 import Options from './components/Options/Options';
-import DecideButton from './components/Button/DecideButton';
-import ResetButton from './components/Button/ResetButton';
+import OptionButtonBar from './components/OptionButtonBar/OptionButtonBar';
 import SearchResults from './components/SearchResults/SearchResults';
+import PopUpModal from './components/PopUpModal/PopUpModal';
+
 import './App.css';
-import axios from 'axios';
 
 
 class App extends Component {
@@ -14,21 +18,21 @@ class App extends Component {
     super(props)
 
     this.state = {
-      response: '',
+      response: undefined,
       options: [],
-      chosenOption: '',
-      searchRequest: {},
+      chosenOption: undefined,
+      isOption: {},
+      searchRequest: {
+        term: '',
+        location: '',
+        limit: '',
+      },
+      open: false,
     };
 
   }
 
-  componentDidMount = () => {
-    console.log(this.state)
-  }
   
-  componentDidUpdate = () => {
-    if(this.state.chosenOption) this.showResult(this.state.chosenOption);
-  }
 
   onRestSearchClick = async () => {
     let termState = this.state.searchRequest["term"]
@@ -42,45 +46,13 @@ class App extends Component {
       }
     })
     .then(res => {
-      console.log(res.data)
       this.setState({
         response: res.data
       });
     }).catch(err =>
       console.log("Could not fetch search results", err)
     );
-  }
-
-  onFormSubmit = (e) => {
-    e.preventDefault();
-  
-    const option = e.target.elements.option.value;
-  
-    if(option) {
-      this.setState({
-        options: [...this.state.options, option]
-      });
-      e.target.elements.option.value = '';
-    }
   };
-  
-  removeAll = () => {
-    this.setState({
-      options: [],
-      chosenOption: '',
-    });
-  };
-  
-  onMakeDecision= () => {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    this.setState({
-      chosenOption: this.state.options[randomNum],
-    })
-  };
-
-  showResult = () => {
-    alert(`Here's Your Restaurant: ${this.state.chosenOption}`)
-  }
 
   updateInputValues = (e) => {
     let searchRequest = this.state.searchRequest;
@@ -91,11 +63,72 @@ class App extends Component {
       searchRequest
     });
   }
+
+  moveRestaurant = (id) => {
+    const { response, options, isOption } = this.state;
+    let tempOptions = options;
+
+    for(let i = 0; i < response.length; i++) {
+      if(response[i].id === id && !isOption[id]) {
+        tempOptions.push(response[i]);
+        isOption[id] = 1;
+      } else if((response[i].id === id) && (isOption[id] !== 1)) {
+        tempOptions.push(response[i]);
+        isOption[id] = 1;
+      }
+    }
+    this.setState({
+      options: tempOptions
+    })
+  }
+
+  deleteOption = (id) => {
+    const { options, isOption } = this.state;
+    let tempOptions = options;
+
+    for(let j = 0; j < options.length; j++) {
+      if(options[j].id === id) {
+        tempOptions.splice(j, 1);
+        isOption[id] = 0;
+      }
+    }
+    this.setState({
+      options: tempOptions
+    })
+  }
+
+  removeAll = () => {
+    this.setState({
+      options: [],
+      chosenOption: '',
+      isOption: {},
+    });
+  };
   
+  onMakeDecision= () => {
+    const { options } = this.state;
+    const randomNum = Math.floor(Math.random() * options.length);
+    
+    this.setState({
+      chosenOption: options[randomNum],
+      open: true,
+    })
+  };
+
+  closeModal = () => {
+    this.setState({ open: false });
+  };
+
   render() {
-    const { searchRequest, response, options, chosenOption } = this.state;
+    const { searchRequest, response, options, chosenOption, isOption, open } = this.state;
     return (
       <div className="main-container">
+        <PopUpModal 
+          chosenOption={ chosenOption }
+          open={ open }
+          closeModal={ this.closeModal }
+          formatPhoneNumber={(phoneNumber) => this.formatPhoneNumber}
+        />
         {/* Header and search bar spans across top */}
         <Header />
         <RestaurantSearchForm 
@@ -109,31 +142,33 @@ class App extends Component {
           <SearchResults 
             onRestSearchClick={ this.onRestSearchClick }
             restaurantList={ response }
+            isOption={ isOption }
+            handleDrop={(id) => this.moveRestaurant(id)}
+            deleteOption={(id) => this.deleteOption(id)}
+            formatPhoneNumber={(phoneNumber) => this.formatPhoneNumber}
           />
         {/* End of left-container */}
         </div>
 
         <div className='right-container'>
-            {/* Drag search results to the options list */}
-            <Options 
-              options={ options }
-              chosenOption={ chosenOption }
-              onMakeDecision={ this.onMakeDecision }
-            />
-            {/* temporary form adding items to options array */}
-            <form onSubmit={ this.onFormSubmit }>
-              <input type="text" name="option"/>
-              <button className='add-option-btn'>Add Option</button>         
-            </form>
-            {/* Randomly select one option */}
-            <DecideButton 
+          {/* Buttons that make a decision and remove all options */}
+          { options.length > 1 &&
+            <OptionButtonBar 
               options={ options }
               onMakeDecision={ this.onMakeDecision }
-            />
-            {/* Remove all options */}
-            <ResetButton 
               removeAll={ this.removeAll }
+              formatPhoneNumber={(phoneNumber) => this.formatPhoneNumber(phoneNumber)}
             />
+          }
+          {/* Drag search results to the options component */}
+          <Options 
+            options={ options }
+            chosenOption={ chosenOption }
+            isOption={ isOption }
+            handleDrop={(id) => this.moveRestaurant(id)}
+            deleteOption={(id) => this.deleteOption(id)}
+            formatPhoneNumber={(phoneNumber) => this.formatPhoneNumber(phoneNumber)}
+          />
         {/* End of right-container */}
         </div>
       </div>
@@ -141,4 +176,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default DragDropContext(HTML5Backend)(App);

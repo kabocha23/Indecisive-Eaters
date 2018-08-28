@@ -5,25 +5,38 @@
   background-image: linear-gradient( rgba(131, 131, 131, 0.5), rgba(131, 131, 131, 0.5) ), url('./static/img/main-background.jpg');
   background-size: cover;
   position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Kosugi Maru', sans-serif;
 }
-.left-container{
-  display: flex;
+.left-container {
   width: 50%;
   min-width: 450px;
+  max-height: inherit;
+  height: calc(100vh - 20%);
+  display: inline-block;
+  background-color: transparent;
+  vertical-align: top;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.right-container {
+  width: 50%;
+  min-width: 450px;
+  max-height: inherit;
   height: calc(100vh - 20%);
   display: inline-block;
   background-color: transparent;
   vertical-align: top;
 }
 
-.right-container{
-  width: 50%;
-  min-width: 450px;
-  height: calc(100vh - 20%);
-  display: inline-block;
-  background-color: transparent;
-  vertical-align: top;
+.options-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
+
 body::-webkit-scrollbar {
   width: 10px;
 }
@@ -35,4 +48,30 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
 background-color: #36363688;
 outline: 1px solid rgba(112, 128, 144, 0.486);
+}
+
+.left-container::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.left-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.left-container::-webkit-scrollbar-thumb {
+background-color: #636363;
+outline: 1px solid slategrey;
+}
+
+.right-container::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.right-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.right-container::-webkit-scrollbar-thumb {
+background-color: #636363;
+outline: 1px solid slategrey;
 }

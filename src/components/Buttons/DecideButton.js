@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './DecideButton.css';
+import './Button.css';
 
 
 class DecideButton extends Component {
@@ -10,7 +10,7 @@ class DecideButton extends Component {
       <div className='decide-btn-cont'>
         <button 
           className='decide-btn'
-          disabled={ options.length === 0 }
+          disabled={!options}
           onClick={ onMakeDecision }
         >
           Decide for me!

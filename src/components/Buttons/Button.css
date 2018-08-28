@@ -1,0 +1,34 @@
+.decide-btn-cont {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.decide-btn {
+  width: 120px;
+  height: 35px;
+  background: #0053b3;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: 'Kosugi Maru', sans-serif;
+}
+
+.reset-btn-cont {
+  display: inline-block;
+}
+
+.reset-btn {
+  width: 60px;
+  height: 35px;
+  background: #363636;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: 'Kosugi Maru', sans-serif;
+}

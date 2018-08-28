@@ -1,0 +1,91 @@
+.popup-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 95%;
+  height: 100%;
+  margin: 10px;
+  padding: 5px;
+  background-color: rgba(245, 245, 245, 0.767);
+  justify-content: space-between;
+  border: 1px solid #636363;
+}
+
+.popup-header {
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+
+
+.popup-text {
+  display: flex;
+  flex: 2 2 auto;
+  order: 1;
+  flex-flow: column wrap;
+  margin: 5px 0px 0px 10px;
+  width: 50%;
+  overflow-wrap: break-word;
+}
+
+.popup-text h3 {
+  margin: 5px 0px;
+  display: block;
+}
+
+.popup-text p {
+  margin: 5px 0px;
+  font-size: 0.8em;
+  white-space: pre-line;
+}
+
+.address {
+  white-space: pre-line;
+}
+
+.yelp-logo {
+  height: auto;
+  width: 50px;
+}
+
+.popup-image {
+  display: flex;
+  flex: 1 1 auto;
+  order: 2;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 30%;
+}
+
+.popup-image img {
+  max-height: 95%;
+  max-width: 95%;
+  border: 1.5px solid #c41200;
+} 
+
+.close-modal-container {
+  order: 5;
+  display: flex;
+}
+
+.close-modal-btn {
+  width: 100px;
+  width: 60px;
+  height: 35px;
+  margin: auto;
+  background: #636363;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: 'Kosugi Maru', sans-serif;
+}
+
+.close-modal-btn:hover {
+  background: #888888;
+}

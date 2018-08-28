@@ -1,7 +1,33 @@
-.options {
-  
+.options{
+  max-height: inherit;
+  height: 95%;
+  background-color: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.options::-webkit-scrollbar {
+  width: 0.5em;
 }
 
-.options p {
+.options::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.options::-webkit-scrollbar-thumb {
+background-color: #636363;
+outline: 1px solid slategrey;
+}
+
+
+.no-options {
+  margin-top: 50%;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+}
+
+.multiple-options {
+  text-align: center;
+  font-size: 15px;
   color: white;
 }

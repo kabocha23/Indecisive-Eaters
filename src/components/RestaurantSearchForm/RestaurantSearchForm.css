@@ -14,11 +14,9 @@ form.search-form {
 form.search-form button {
   width: 50px;
   height: 40px;
-  padding: 10px;
   background: #c41200;
   color: white;
   font-size: 17px;
-  border: 1px solid grey;
   border: none;
   cursor: pointer;
   box-sizing: border-box;
@@ -34,6 +32,7 @@ form.search-form button {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   padding-left: 10px;
+  font-family: 'Kosugi Maru', sans-serif;
 }
 
 .restaurantLocation {
@@ -43,6 +42,7 @@ form.search-form button {
   border: none;
   border-left: 1px solid rgb(185, 185, 185);
   padding-left: 10px;
+  font-family: 'Kosugi Maru', sans-serif;
 }
 
 form.search-form button:hover {
@@ -56,6 +56,6 @@ form.search-form::after {
 }
 
 .search-btn img {
-  margin: auto;
-  height: 15px;
+  vertical-align: middle;
+  height: 17px;
 }

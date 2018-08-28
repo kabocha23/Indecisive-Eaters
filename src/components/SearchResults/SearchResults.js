@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import Restaurant from '../Restaurant/Restaurant'
 import HaventSearchedYet from '../HaventSearchedYet/HaventSearchedYet'
+
 import './SearchResults.css'
 
 
@@ -8,7 +10,7 @@ import './SearchResults.css'
 class SearchResults extends Component {
 
   render() {
-    const { restaurantList } = this.props;
+    const { restaurantList, handleDrop, deleteOption, isOption, formatPhoneNumber } = this.props;
     return(
       <div className='search-results-container'>     
         { restaurantList
@@ -16,6 +18,10 @@ class SearchResults extends Component {
             <Restaurant 
               key={data.id}
               data={data}
+              isOption={ isOption }
+              handleDrop={(id) => handleDrop(id)}
+              deleteOption={(id) => deleteOption(id)}
+              formatPhoneNumber={(phoneNumber) => formatPhoneNumber(phoneNumber)}
             />
           )
           : <HaventSearchedYet />

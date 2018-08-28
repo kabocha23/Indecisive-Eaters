@@ -12,7 +12,6 @@ class RestaurantSearchForm extends Component {
 
   handleInputValues(e) {
     e.preventDefault();
-
     this.props.updateInputValues(e)
   }
 
@@ -30,7 +29,7 @@ class RestaurantSearchForm extends Component {
             type="text" 
             name="term" 
             className="restaurantType"
-            placeholder="parks, sushi, gyms..."
+            placeholder="Deep dish pizza, bun bo hue, yakitori..."
             value={ term }
           />
           <input 
