@@ -2,6 +2,7 @@
 
 module.exports = {
   regularSearch(req, res) {
+    console.log('regularSearch function reached')
     const yelp = require('yelp-fusion');
     const yelpFusionAPIKey = process.env.REACT_APP_YELP_API_KEY;
     const searchRequest = {
