@@ -1,6 +1,6 @@
 {
   "name": "react-restaurant",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
@@ -25,12 +25,13 @@
     "yelp-fusion": "^2.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cd server && nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "serve": "cd server && nodemon server.js",
-    "concurrent": "concurrently \"yarn server\" \"yarn start\""
+    "start2": "react-scripts start",
+    "dev": "concurrently \"yarn start2\" \"yarn start\"",
+    "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "proxy": {
     "/api/restaurantsearch": {
