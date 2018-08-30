@@ -9,7 +9,7 @@ const PORT = 4000;
 
 const yelpController = require('./controllers/yelpController');
 
-
+app.set('port', (PORT || 5000));
 app.use(bodyParser.json());
 
 app.use(session({
@@ -25,6 +25,6 @@ app.use(cors());
 
 app.get('/api/restaurantsearch', yelpController.regularSearch)
 
-app.listen(PORT, () => 
+app.listen(app.get('port'), () => 
   console.log('Listening on port:', PORT)
 );

@@ -34,7 +34,7 @@
   },
   "proxy": {
     "/api/restaurantsearch": {
-      "target": "https://whispering-forest-79782.herokuapp.com"
+      "target": "http://localhost:4000"
     }
   }
 }
