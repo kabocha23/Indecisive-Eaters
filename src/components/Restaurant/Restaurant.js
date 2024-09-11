@@ -34,12 +34,18 @@ class Restaurant extends Component {
     return (!format) ? null : "(" + format[1] + ") " + format[2] + "-" + format[3];
   };
 
+  roundRating = (rating) => {
+    console.log((Math.round(rating * 2) / 2).toFixed(1))
+    return (Math.round(rating * 2) / 2).toFixed(1);
+  }
+
   render() {
     const { isDragging, connectDragSource, isOption, deleteOption } = this.props;
     const opacity = isDragging ? 0 : 1;
     const { name, url, review_count, price, image_url, rating, id, phone } = this.props.data;
     const { address1, city, state, zip_code } = this.props.data.location;
-    const formattedPhoneNum = this.formatPhoneNumber(phone)
+    const formattedPhoneNum = this.formatPhoneNumber(phone);
+    const roundedRating = this.roundRating(rating);
 
     return connectDragSource(
       <div className='listing-container' style={{ opacity }}>
@@ -57,7 +63,7 @@ class Restaurant extends Component {
             <span className='address'>{ formattedPhoneNum }</span>
           </p>
           <p>
-            <img src={require(`../../static/img/yelp-stars/${rating}.png`)} alt='star-ratings-img'/> { review_count } Reviews
+            <img src={require(`../../static/img/yelp-stars/${ roundedRating }.png`)} alt='star-ratings-img'/> { review_count } Reviews
           </p>
           <p>
             <span className='star-rating'>{ price }</span>
