@@ -35,7 +35,6 @@ class Restaurant extends Component {
   };
 
   roundRating = (rating) => {
-    console.log((Math.round(rating * 2) / 2).toFixed(1))
     return (Math.round(rating * 2) / 2).toFixed(1);
   }
 
