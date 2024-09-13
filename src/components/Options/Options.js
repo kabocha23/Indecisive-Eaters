@@ -29,7 +29,7 @@ class Options extends Component {
         <p className={options.length < 1 ? 'no-options' : 'multiple-options'}>
           { 
             options.length < 2 
-            ? 'Drag two or more desired restaurants here'
+            ? 'Then drag two or more of the results here. Try searching again and adding more restaurants!'
             : 'Press the Decide button and get ready to go!'
           }
         </p>
