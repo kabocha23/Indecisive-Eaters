@@ -12,6 +12,10 @@ class PopUpModal extends React.Component {
     return (!format) ? null : "(" + format[1] + ") " + format[2] + "-" + format[3];
   };
 
+  roundRating = (rating) => {
+    return (Math.round(rating * 2) / 2).toFixed(1);
+  }
+
   render() {
     const { chosenOption, closeModal, open } = this.props;
     const handleCloseModal = closeModal;
@@ -19,6 +23,7 @@ class PopUpModal extends React.Component {
       const { name, url, review_count, price, image_url, rating, phone } = this.props.chosenOption;
       const { address1, city, state, zip_code } = this.props.chosenOption.location;
       const formattedPhoneNumber = this.formatPhoneNumber(phone);
+      const roundedRating = this.roundRating(rating);
 
       return (
         <div className='chosen-option-modal'>
@@ -46,7 +51,7 @@ class PopUpModal extends React.Component {
                   <span className='address'>{ formattedPhoneNumber }</span>
                 </p>
                 <p>
-                  <img src={require(`../../static/img/yelp-stars/${rating}.png`)} alt='star-ratings-img'/> { review_count } Reviews
+                  <img src={require(`../../static/img/yelp-stars/${ roundedRating }.png`)} alt='star-ratings-img'/> { review_count } Reviews
                 </p>
                 <p>
                   <span className='star-rating'>{ price }</span>
