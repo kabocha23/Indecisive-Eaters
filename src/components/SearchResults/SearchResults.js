@@ -11,6 +11,7 @@ class SearchResults extends Component {
 
   render() {
     const { restaurantList, handleDrop, deleteOption, isOption, formatPhoneNumber } = this.props;
+    console.log(typeof restaurantList)
     return(
       <div className='search-results-container'>     
         { restaurantList

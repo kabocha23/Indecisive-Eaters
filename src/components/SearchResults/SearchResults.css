@@ -1,4 +1,7 @@
-.search-results-container{
+.search-results-container {
   max-height: inherit;
   background-color: transparent;
+}
+.listing-container:hover {
+  cursor: grab;
 }
